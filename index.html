@@ -23,16 +23,27 @@
                 <input type="text" class="search_input" placeholder="Rechercher une recette, un ingrédient, ...">
             </div>
             <button class="search_button">
-                <img src="assets/loupe.svg" alt="bouton search">
+                <img src="assets/loupe.svg" alt="bouton recherche">
             </button>
         </div>
     </header>
-
+    <div class="main_bouton_filtre">
+        <div class="dropdown">
+            <button id="bouton_ingredients" class="bouton_dropdown" type="button">Ingrédient</button>
+        </div>
+        <div class="dropdown">
+            <button id="bouton_appareils" class="bouton_dropdown" type="button">Appareils</button>
+        </div>
+        <div class="dropdown">
+            <button id="bouton_ustensiles" class="bouton_dropdown" type="button">Ustensiles</button>
+        </div>
+    </div>
     <main>
 
     </main>
     <script src="./data/recipes.js"></script>
     <script src="./scripts/recetteDom.js"></script>
+    <script src="./scripts/dropdown.js"></script>
     <script src="./scripts/index.js"></script>
 
 </body>

@@ -2,6 +2,7 @@ function getRecipeDom(recipe) {
     const picture = `assets/images/photos/${recipe.image}`;
 
     const article = document.createElement("article");
+    article.setAttribute("class", "card_recipe");
 
     const photo = document.createElement("img");
     photo.setAttribute("src", picture);
