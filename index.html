@@ -28,14 +28,32 @@
         </div>
     </header>
     <div class="main_bouton_filtre">
-        <div class="dropdown">
-            <button id="bouton_ingredients" class="bouton_dropdown" type="button">Ingrédient</button>
+        <div id="dropdown-ingredient" class="dropdown">
+            <button class="bouton_dropdown" type="button">Ingrédient
+                <input class="dropdown_recherche" type="text">
+            </button>
+            <ul class="dropdown_liste">
+                <li>popcorn</li>
+                <li>riz</li>
+            </ul>
+        </div>
+        <div id="dropdown-appareil" class="dropdown">
+            <button class="bouton_dropdown" type="button">Appareils
+                <input class="dropdown_recherche" type="text">
+            </button>
+            <ul class="dropdown_liste">
+                <li>moulinex</li>
+                <li>soupmaker</li>
+            </ul>
         </div>
         <div class="dropdown">
-            <button id="bouton_appareils" class="bouton_dropdown" type="button">Appareils</button>
-        </div>
-        <div class="dropdown">
-            <button id="bouton_ustensiles" class="bouton_dropdown" type="button">Ustensiles</button>
+            <button class="bouton_dropdown" type="button">Ustensiles
+                <input class="dropdown_recherche" type="text">
+            </button>
+            <ul class="dropdown_liste">
+                <li>cuillere</li>
+                <li>fourchette</li>
+            </ul>
         </div>
     </div>
     <main>
