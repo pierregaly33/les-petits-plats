@@ -9,12 +9,18 @@ function getRecipeDom(recipe) {
     photo.setAttribute("alt", recipe.name);
     article.appendChild(photo);
 
+    const footerRecette = document.createElement("div");
+    footerRecette.setAttribute("class", "footer-recette");
+    article.appendChild(footerRecette);
+
     const titleRecette = document.createElement("h2");
     titleRecette.textContent = recipe.name;
-    article.appendChild(titleRecette);
+    titleRecette.setAttribute("class", "nom-recette");
+    footerRecette.appendChild(titleRecette);
 
     const mainRecette = document.createElement("div");
-    article.appendChild(mainRecette);
+    mainRecette.setAttribute("class", "recette");
+    footerRecette.appendChild(mainRecette);
 
     const titleMainRecette = document.createElement("h3");
     titleMainRecette.textContent = "RECETTE";
@@ -25,25 +31,33 @@ function getRecipeDom(recipe) {
     mainRecette.appendChild(descriptionRecette);
 
     const mainIngredients = document.createElement("div");
-    article.appendChild(mainIngredients);
+    mainIngredients.setAttribute("class", "main-ingredients");
+    footerRecette.appendChild(mainIngredients);
 
     const titleIngredients = document.createElement("h3");
+    titleIngredients.setAttribute("class", "title-ingredient");
     titleIngredients.textContent = "Ingrédients";
     mainIngredients.appendChild(titleIngredients);
+
+    const ingredientEtQuantite = document.createElement("div");
+    ingredientEtQuantite.setAttribute("class", "ingredient-quantite");
+    mainIngredients.appendChild(ingredientEtQuantite);
 
     recipe.ingredients.forEach((ingredient) => {
         const parentIngredient = document.createElement("div");
 
         const nomIngredient = document.createElement("p");
+        nomIngredient.setAttribute("class", "nom-ingredient");
         nomIngredient.textContent = ingredient.ingredient;
 
         const quantiteIngredient = document.createElement("p");
+        quantiteIngredient.setAttribute("class", "quantite-ingredient");
         quantiteIngredient.textContent = `${ingredient.quantity ?? ""} ${ingredient.unit ?? ""}`;
 
         parentIngredient.appendChild(nomIngredient);
         parentIngredient.appendChild(quantiteIngredient);
 
-        mainIngredients.appendChild(parentIngredient);
+        ingredientEtQuantite.appendChild(parentIngredient);
     });
 
     return article;

@@ -70,6 +70,90 @@ header p {
     border-radius: 5px;
 }
 
+.dropdown {
+    background-color: #EDEDED;
+}
+
 article img {
-    width: 200px;
+    width: 100%;
+    object-fit: cover;
+    height: 250px;
+    border-radius: 20px 20px 0 0;
+}
+
+.main_cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 66px;
+    background-color: #EDEDED;
+}
+
+
+.card_recipe {
+    background: white;
+    height: 730px;
+    width: 64%;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+.footer-recette {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 54%;
+    margin: 10px 20px 0 20px
+}
+
+.nom-recette {
+    font-family: Anton;
+    color: black;
+    font-weight: 400;
+    font-size: 18px;
+
+}
+
+.recette h3 {
+    color: #7A7A7A;
+    font-family: Manrope;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.08px;
+    margin-bottom: 15px;
+}
+
+.recette p {
+    color: black;
+    font-family: Manrope;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.title-ingredient {
+    color: #7A7A7A;
+    font-family: Manrope;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.08px;
+    margin-bottom: 15px;
+}
+
+.ingredient-quantite {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 10px;
+}
+
+.nom-ingredient {
+    font-family: Manrope;
+    font-size: 12px;
+    font-weight: 500;
+    color: black;
+}
+
+.quantite-ingredient {
+    color: #7A7A7A;
+    font-family: Manrope;
+    font-size: 12px;
+    font-weight: 400;
 }
