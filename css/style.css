@@ -70,8 +70,11 @@ header p {
     border-radius: 5px;
 }
 
-.dropdown {
-    background-color: #EDEDED;
+.main_bouton_filtre {
+    background: #EDEDED;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
 }
 
 article img {
