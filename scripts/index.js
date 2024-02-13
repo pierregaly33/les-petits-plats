@@ -1,18 +1,14 @@
-function displayRecipes() {
-    const main = document.querySelector("main");
+function displayRecipes(recettes) {
+    const mainCards = document.querySelector(".main_cards");
+    mainCards.innerHTML = "";
 
-    const mainCards = document.createElement("section");
-    mainCards.setAttribute("class", "main_cards");
-    main.appendChild(mainCards);
-
-    console.log(main);
-    recipes.forEach((recipe) => {
+    recettes.forEach((recipe) => {
         const domRecipe = getRecipeDom(recipe);
         mainCards.appendChild(domRecipe);
     });
 }
 
 function init() {
-    displayRecipes();
+    displayRecipes(recipes);
 }
 init();

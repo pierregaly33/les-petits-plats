@@ -71,10 +71,11 @@ header p {
 }
 
 .main_bouton_filtre {
-    background: #EDEDED;
     display: flex;
     gap: 50px;
     justify-content: center;
+    position: absolute;
+    width: 100%;
 }
 
 article img {
@@ -84,11 +85,33 @@ article img {
     border-radius: 20px 20px 0 0;
 }
 
+.dropdown {
+    overflow: hidden;
+}
+
+.dropdown ul {
+    background: #FFFFFF;
+    list-style-type: none;
+    padding: 0;
+    overflow-y: auto;
+    height: 300px;
+    width: 195px;
+}
+
+button {
+    padding: 17px 16px 17px 16px;
+    border-radius: 11px;
+    border: none;
+    cursor: pointer;
+    background: #FFFFFF;
+}
+
 .main_cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 66px;
     background-color: #EDEDED;
+    padding-top: 90px;
 }
 
 

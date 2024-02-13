@@ -24,11 +24,26 @@ function toggleIngredient() {
         closeIngredient();
     }
 }
+getDropdownDomIngredient(getIngredient());
 
 const boutonDropdownIngredient = document.querySelector(".bouton_dropdown_ingredient");
 boutonDropdownIngredient.addEventListener("click", () => {
     toggleIngredient();
 });
+
+function getDropdownDomIngredient(ingredients) {
+    const ulIngredients = document.querySelector(".dropdown_liste_ingredient");
+
+    ingredients.forEach((ingredient) => {
+        const liIngredient = document.createElement("li");
+        ulIngredients.appendChild(liIngredient);
+        liIngredient.textContent = ingredient.ingredient;
+    });
+}
+
+function getIngredient() {
+    return recipes.flatMap((recipe) => recipe.ingredients);
+}
 
 const listAppareil = document.querySelector(".dropdown_liste_appareils");
 listAppareil.style.display = "none";
@@ -55,6 +70,17 @@ function toggleAppareil() {
     } else {
         closeAppareil();
     }
+}
+getDropdownDomAppareil();
+
+function getDropdownDomAppareil() {
+    const ulAppareil = document.querySelector(".dropdown_liste_appareils");
+
+    recipes.forEach((appareil) => {
+        const liAppareil = document.createElement("li");
+        ulAppareil.appendChild(liAppareil);
+        liAppareil.textContent = appareil.appliance;
+    });
 }
 
 const boutonDropdownAppareil = document.querySelector(".bouton_dropdown_appareils");
@@ -93,3 +119,18 @@ const boutonDropdownUstensiles = document.querySelector(".bouton_dropdown_ustens
 boutonDropdownUstensiles.addEventListener("click", () => {
     toggleUstensiles();
 });
+
+function getDropdownDomUstensile(ustensils) {
+    const ulUstensile = document.querySelector(".dropdown_liste_ustensiles");
+
+    ustensils.forEach((ustensil) => {
+        const liUstensile = document.createElement("li");
+        ulUstensile.appendChild(liUstensile);
+        liUstensile.textContent = ustensil;
+    });
+}
+
+function getUstensile() {
+    return recipes.flatMap((recipe) => recipe.ustensils);
+}
+getDropdownDomUstensile(getUstensile());
