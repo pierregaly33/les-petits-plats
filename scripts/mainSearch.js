@@ -3,7 +3,11 @@ function test() {
     searchBar.addEventListener("input", (e) => {
         var filteredRecipes = filterRecipe(e.target.value);
         displayRecipes(filteredRecipes);
-        console.log(filteredRecipes);
+        const ingredientFiltered = getIngredient(filteredRecipes);
+        getDropdownDomIngredient(ingredientFiltered);
+        getDropdownDomAppareil(filteredRecipes);
+        const ustensilFiltered = getUstensile(filteredRecipes);
+        getDropdownDomUstensile(ustensilFiltered);
     });
 }
 

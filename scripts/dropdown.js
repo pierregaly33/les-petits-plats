@@ -24,7 +24,7 @@ function toggleIngredient() {
         closeIngredient();
     }
 }
-getDropdownDomIngredient(getIngredient());
+getDropdownDomIngredient(getIngredient(recipes));
 
 const boutonDropdownIngredient = document.querySelector(".bouton_dropdown_ingredient");
 boutonDropdownIngredient.addEventListener("click", () => {
@@ -33,6 +33,7 @@ boutonDropdownIngredient.addEventListener("click", () => {
 
 function getDropdownDomIngredient(ingredients) {
     const ulIngredients = document.querySelector(".dropdown_liste_ingredient");
+    ulIngredients.innerHTML = "";
 
     ingredients.forEach((ingredient) => {
         const liIngredient = document.createElement("li");
@@ -41,8 +42,8 @@ function getDropdownDomIngredient(ingredients) {
     });
 }
 
-function getIngredient() {
-    return recipes.flatMap((recipe) => recipe.ingredients);
+function getIngredient(tableau) {
+    return tableau.flatMap((recipe) => recipe.ingredients);
 }
 
 const listAppareil = document.querySelector(".dropdown_liste_appareils");
@@ -71,12 +72,13 @@ function toggleAppareil() {
         closeAppareil();
     }
 }
-getDropdownDomAppareil();
+getDropdownDomAppareil(recipes);
 
-function getDropdownDomAppareil() {
+function getDropdownDomAppareil(appareils) {
     const ulAppareil = document.querySelector(".dropdown_liste_appareils");
+    ulAppareil.innerHTML = "";
 
-    recipes.forEach((appareil) => {
+    appareils.forEach((appareil) => {
         const liAppareil = document.createElement("li");
         ulAppareil.appendChild(liAppareil);
         liAppareil.textContent = appareil.appliance;
@@ -122,6 +124,7 @@ boutonDropdownUstensiles.addEventListener("click", () => {
 
 function getDropdownDomUstensile(ustensils) {
     const ulUstensile = document.querySelector(".dropdown_liste_ustensiles");
+    ulUstensile.innerHTML = "";
 
     ustensils.forEach((ustensil) => {
         const liUstensile = document.createElement("li");
@@ -130,7 +133,7 @@ function getDropdownDomUstensile(ustensils) {
     });
 }
 
-function getUstensile() {
-    return recipes.flatMap((recipe) => recipe.ustensils);
+function getUstensile(tableau) {
+    return tableau.flatMap((recipe) => recipe.ustensils);
 }
-getDropdownDomUstensile(getUstensile());
+getDropdownDomUstensile(getUstensile(recipes));

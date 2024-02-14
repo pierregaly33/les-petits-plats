@@ -94,7 +94,7 @@ article img {
     list-style-type: none;
     padding: 0;
     overflow-y: auto;
-    height: 300px;
+    max-height: 300px;
     width: 195px;
 }
 
