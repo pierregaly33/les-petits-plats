@@ -24,6 +24,7 @@ function toggleIngredient() {
         closeIngredient();
     }
 }
+
 getDropdownDomIngredient(getIngredient(recipes));
 
 const boutonDropdownIngredient = document.querySelector(".bouton_dropdown_ingredient");
@@ -43,7 +44,15 @@ function getDropdownDomIngredient(ingredients) {
 }
 
 function getIngredient(tableau) {
-    return tableau.flatMap((recipe) => recipe.ingredients);
+    let tableauIntermediaire = tableau.flatMap((recipe) => recipe.ingredients);
+
+    let tableauSansDoublon = tableauIntermediaire.filter(
+        (item, i) =>
+            tableauIntermediaire.findIndex(
+                (item2) => item.ingredient.toUpperCase() == item2.ingredient.toUpperCase()
+            ) == i
+    );
+    return tableauSansDoublon;
 }
 
 const listAppareil = document.querySelector(".dropdown_liste_appareils");
@@ -78,7 +87,11 @@ function getDropdownDomAppareil(appareils) {
     const ulAppareil = document.querySelector(".dropdown_liste_appareils");
     ulAppareil.innerHTML = "";
 
-    appareils.forEach((appareil) => {
+    let tableauSansDoublon = appareils.filter(
+        (item, i) => appareils.findIndex((item2) => item.appliance.toUpperCase() == item2.appliance.toUpperCase()) == i
+    );
+
+    tableauSansDoublon.forEach((appareil) => {
         const liAppareil = document.createElement("li");
         ulAppareil.appendChild(liAppareil);
         liAppareil.textContent = appareil.appliance;
@@ -133,7 +146,47 @@ function getDropdownDomUstensile(ustensils) {
     });
 }
 
+function name(params) {}
+
 function getUstensile(tableau) {
-    return tableau.flatMap((recipe) => recipe.ustensils);
+    let tableauIntermediaire = tableau.flatMap((recipe) => recipe.ustensils);
+
+    let tableauSansDoublon = tableauIntermediaire.filter(
+        (item, i) => tableauIntermediaire.findIndex((item2) => item.toUpperCase() == item2.toUpperCase()) == i
+    );
+    return tableauSansDoublon;
 }
+
 getDropdownDomUstensile(getUstensile(recipes));
+
+function initDropdownSearchIngredient() {
+    const searchBar = document.querySelector(".dropdown_recherche_ingredient");
+    searchBar.addEventListener("input", (e) => {
+        let filteredIngredient = filterIngredient(e.target.value, ingredientFiltered);
+        getDropdownDomIngredient(filteredIngredient);
+    });
+}
+
+function filterIngredient(text, ingredient) {
+    const element = text.toLowerCase();
+    const newIngredients = ingredient.filter((ingredient) => ingredient.ingredient.toLowerCase().includes(element));
+    return newIngredients;
+}
+
+initDropdownSearchIngredient();
+
+function initDropdownSearchUstensil() {
+    const searchBar = document.querySelector(".dropdown_recherche_ustensiles");
+    searchBar.addEventListener("input", (e) => {
+        let filteredUstensil = filterUstensils(e.target.value, ustensilFiltered);
+        getDropdownDomUstensile(filteredUstensil);
+    });
+}
+
+function filterUstensils(text, ustensil) {
+    const element = text.toLowerCase();
+    const newUstensils = ustensil.filter((ustensil) => ustensil.toLowerCase().includes(element));
+    return newUstensils;
+}
+
+initDropdownSearchUstensil();

@@ -1,12 +1,14 @@
-function test() {
+let ingredientFiltered;
+let ustensilFiltered;
+function affichageRecettesFiltres() {
     const searchBar = document.querySelector(".search_input");
     searchBar.addEventListener("input", (e) => {
-        var filteredRecipes = filterRecipe(e.target.value);
+        let filteredRecipes = filterRecipe(e.target.value);
         displayRecipes(filteredRecipes);
-        const ingredientFiltered = getIngredient(filteredRecipes);
+        ingredientFiltered = getIngredient(filteredRecipes);
         getDropdownDomIngredient(ingredientFiltered);
         getDropdownDomAppareil(filteredRecipes);
-        const ustensilFiltered = getUstensile(filteredRecipes);
+        ustensilFiltered = getUstensile(filteredRecipes);
         getDropdownDomUstensile(ustensilFiltered);
     });
 }
@@ -18,4 +20,5 @@ function filterRecipe(text) {
     );
     return newRecipes;
 }
-test();
+
+affichageRecettesFiltres();
