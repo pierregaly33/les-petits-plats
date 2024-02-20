@@ -1,47 +1,41 @@
-const listIngredient = document.querySelector(".dropdown_liste_ingredient");
-listIngredient.style.display = "none";
-
-const rechercheIngredients = document.querySelector(".dropdown_recherche_ingredient");
-rechercheIngredients.style.display = "none";
-
-let ouvertIngredient = false;
-function openIngredient() {
-    listIngredient.style.display = "block";
-    rechercheIngredients.style.display = "block";
-    ouvertIngredient = true;
-}
-
-function closeIngredient() {
-    listIngredient.style.display = "none";
-    rechercheIngredients.style.display = "none";
-    ouvertIngredient = false;
-}
-
-function toggleIngredient() {
-    if (ouvertIngredient == false) {
-        openIngredient();
-    } else {
-        closeIngredient();
+function createDropdown(domElement, tableauString) {
+    let dejaOuvert;
+    const liste = domElement.querySelector("ul");
+    function openDropdown() {
+        domElement.querySelector("input").style.display = "block";
+        liste.style.display = "block";
+        dejaOuvert = true;
     }
-}
 
-getDropdownDomIngredient(getIngredient(recipes));
+    function closeDropdown() {
+        domElement.querySelector("input").style.display = "none";
+        domElement.querySelector("ul").style.display = "none";
+        dejaOuvert = false;
+    }
 
-const boutonDropdownIngredient = document.querySelector(".bouton_dropdown_ingredient");
-boutonDropdownIngredient.addEventListener("click", () => {
-    toggleIngredient();
-});
+    function toggleDropdown() {
+        if (dejaOuvert == false) {
+            openDropdown(domElement);
+        } else {
+            closeDropdown(domElement);
+        }
+    }
 
-function getDropdownDomIngredient(ingredients) {
-    const ulIngredients = document.querySelector(".dropdown_liste_ingredient");
-    ulIngredients.innerHTML = "";
+    domElement.querySelector("button").addEventListener("click", () => {
+        toggleDropdown();
+    });
+    closeDropdown();
 
-    ingredients.forEach((ingredient) => {
-        const liIngredient = document.createElement("li");
-        ulIngredients.appendChild(liIngredient);
-        liIngredient.textContent = ingredient.ingredient;
+    tableauString.forEach((element) => {
+        const createLi = document.createElement("li");
+        liste.appendChild(createLi);
+        createLi.textContent = element;
     });
 }
+
+var dropDownIngredient = createDropdown(document.querySelector("#dropdown-ingredients"), getIngredient(recipes));
+createDropdown(document.querySelector("#dropdown-appareil"), getAppareils(recipes));
+createDropdown(document.querySelector("#dropdown-ustensiles"), getUstensile(recipes));
 
 function getIngredient(tableau) {
     let tableauIntermediaire = tableau.flatMap((recipe) => recipe.ingredients);
@@ -52,101 +46,16 @@ function getIngredient(tableau) {
                 (item2) => item.ingredient.toUpperCase() == item2.ingredient.toUpperCase()
             ) == i
     );
-    return tableauSansDoublon;
+    return tableauSansDoublon.map((element) => element.ingredient);
 }
 
-const listAppareil = document.querySelector(".dropdown_liste_appareils");
-listAppareil.style.display = "none";
-
-const rechercheAppareil = document.querySelector(".dropdown_recherche_appareils");
-rechercheAppareil.style.display = "none";
-
-let ouvertAppareil = false;
-function openAppareil() {
-    listAppareil.style.display = "block";
-    rechercheAppareil.style.display = "block";
-    ouvertAppareil = true;
-}
-
-function closeAppareil() {
-    listAppareil.style.display = "none";
-    rechercheAppareil.style.display = "none";
-    ouvertAppareil = false;
-}
-
-function toggleAppareil() {
-    if (ouvertAppareil == false) {
-        openAppareil();
-    } else {
-        closeAppareil();
-    }
-}
-getDropdownDomAppareil(recipes);
-
-function getDropdownDomAppareil(appareils) {
-    const ulAppareil = document.querySelector(".dropdown_liste_appareils");
-    ulAppareil.innerHTML = "";
-
-    let tableauSansDoublon = appareils.filter(
-        (item, i) => appareils.findIndex((item2) => item.appliance.toUpperCase() == item2.appliance.toUpperCase()) == i
+function getAppareils(tableau) {
+    let tableauSansDoublon = tableau.filter(
+        (item, i) => tableau.findIndex((item2) => item.appliance.toUpperCase() == item2.appliance.toUpperCase()) == i
     );
 
-    tableauSansDoublon.forEach((appareil) => {
-        const liAppareil = document.createElement("li");
-        ulAppareil.appendChild(liAppareil);
-        liAppareil.textContent = appareil.appliance;
-    });
+    return tableauSansDoublon.map((element) => element.appliance);
 }
-
-const boutonDropdownAppareil = document.querySelector(".bouton_dropdown_appareils");
-boutonDropdownAppareil.addEventListener("click", () => {
-    toggleAppareil();
-});
-
-const listUstensiles = document.querySelector(".dropdown_liste_ustensiles");
-listUstensiles.style.display = "none";
-
-const rechercheUstensiles = document.querySelector(".dropdown_recherche_ustensiles");
-rechercheUstensiles.style.display = "none";
-
-let ouvertUstensile = false;
-function openUstensiles() {
-    listUstensiles.style.display = "block";
-    rechercheUstensiles.style.display = "block";
-    ouvertUstensile = true;
-}
-
-function closeUstensiles() {
-    listUstensiles.style.display = "none";
-    rechercheUstensiles.style.display = "none";
-    ouvertUstensile = false;
-}
-
-function toggleUstensiles() {
-    if (ouvertUstensile == false) {
-        openUstensiles();
-    } else {
-        closeUstensiles();
-    }
-}
-
-const boutonDropdownUstensiles = document.querySelector(".bouton_dropdown_ustensiles");
-boutonDropdownUstensiles.addEventListener("click", () => {
-    toggleUstensiles();
-});
-
-function getDropdownDomUstensile(ustensils) {
-    const ulUstensile = document.querySelector(".dropdown_liste_ustensiles");
-    ulUstensile.innerHTML = "";
-
-    ustensils.forEach((ustensil) => {
-        const liUstensile = document.createElement("li");
-        ulUstensile.appendChild(liUstensile);
-        liUstensile.textContent = ustensil;
-    });
-}
-
-function name(params) {}
 
 function getUstensile(tableau) {
     let tableauIntermediaire = tableau.flatMap((recipe) => recipe.ustensils);
@@ -154,10 +63,9 @@ function getUstensile(tableau) {
     let tableauSansDoublon = tableauIntermediaire.filter(
         (item, i) => tableauIntermediaire.findIndex((item2) => item.toUpperCase() == item2.toUpperCase()) == i
     );
-    return tableauSansDoublon;
-}
 
-getDropdownDomUstensile(getUstensile(recipes));
+    return tableauSansDoublon.map((element) => element);
+}
 
 function initDropdownSearchIngredient() {
     const searchBar = document.querySelector(".dropdown_recherche_ingredient");
