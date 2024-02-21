@@ -15,6 +15,9 @@ function affichageRecettesFiltres() {
 }
 
 function filterRecipe(text) {
+    if (text.length < 3) {
+        return recipes;
+    }
     const element = text.toLowerCase();
     const newRecipes = recipes.filter(
         (recipe) => recipe.name.toLowerCase().includes(element) || recipe.description.toLowerCase().includes(element)
