@@ -1,15 +1,23 @@
+const dropdownDomIngredient = document.querySelector("#dropdown-ingredients");
+const dropdownDomAppareil = document.querySelector("#dropdown-appareil");
+const dropdownDomUstensil = document.querySelector("#dropdown-ustensiles");
+
 function createDropdown(domElement, tableauString) {
     let dejaOuvert;
     const liste = domElement.querySelector("ul");
+    const searchBar = domElement.querySelector("input");
+
+    let tableauDeRecherche = tableauString;
+
     function openDropdown() {
-        domElement.querySelector("input").style.display = "block";
+        searchBar.style.display = "block";
         liste.style.display = "block";
         dejaOuvert = true;
     }
 
     function closeDropdown() {
-        domElement.querySelector("input").style.display = "none";
-        domElement.querySelector("ul").style.display = "none";
+        searchBar.style.display = "none";
+        liste.style.display = "none";
         dejaOuvert = false;
     }
 
@@ -21,21 +29,42 @@ function createDropdown(domElement, tableauString) {
         }
     }
 
+    function filter(text) {
+        return tableauDeRecherche.filter((element) => element.toLowerCase().includes(text.toLowerCase()));
+    }
+
     domElement.querySelector("button").addEventListener("click", () => {
         toggleDropdown();
     });
     closeDropdown();
 
-    tableauString.forEach((element) => {
-        const createLi = document.createElement("li");
-        liste.appendChild(createLi);
-        createLi.textContent = element;
+    function createDom(tableau) {
+        tableau.forEach((element) => {
+            const createLi = document.createElement("li");
+            liste.appendChild(createLi);
+            createLi.textContent = element;
+        });
+    }
+
+    createDom(tableauString);
+
+    searchBar.addEventListener("input", (e) => {
+        const filteredItems = filter(e.target.value);
+        liste.innerHTML = "";
+        createDom(filteredItems);
     });
+
+    function updateDropdown(nouvellesValeurs) {
+        tableauDeRecherche = nouvellesValeurs;
+        liste.innerHTML = "";
+        createDom(nouvellesValeurs);
+    }
+    return { updateDropdown };
 }
 
-var dropDownIngredient = createDropdown(document.querySelector("#dropdown-ingredients"), getIngredient(recipes));
-createDropdown(document.querySelector("#dropdown-appareil"), getAppareils(recipes));
-createDropdown(document.querySelector("#dropdown-ustensiles"), getUstensile(recipes));
+const dropdownIngredient = createDropdown(dropdownDomIngredient, getIngredient(recipes));
+const dropdownAppareil = createDropdown(dropdownDomAppareil, getAppareils(recipes));
+const dropdownUstensil = createDropdown(dropdownDomUstensil, getUstensile(recipes));
 
 function getIngredient(tableau) {
     let tableauIntermediaire = tableau.flatMap((recipe) => recipe.ingredients);
@@ -66,35 +95,3 @@ function getUstensile(tableau) {
 
     return tableauSansDoublon.map((element) => element);
 }
-
-function initDropdownSearchIngredient() {
-    const searchBar = document.querySelector(".dropdown_recherche_ingredient");
-    searchBar.addEventListener("input", (e) => {
-        let filteredIngredient = filterIngredient(e.target.value, ingredientFiltered);
-        getDropdownDomIngredient(filteredIngredient);
-    });
-}
-
-function filterIngredient(text, ingredient) {
-    const element = text.toLowerCase();
-    const newIngredients = ingredient.filter((ingredient) => ingredient.ingredient.toLowerCase().includes(element));
-    return newIngredients;
-}
-
-initDropdownSearchIngredient();
-
-function initDropdownSearchUstensil() {
-    const searchBar = document.querySelector(".dropdown_recherche_ustensiles");
-    searchBar.addEventListener("input", (e) => {
-        let filteredUstensil = filterUstensils(e.target.value, ustensilFiltered);
-        getDropdownDomUstensile(filteredUstensil);
-    });
-}
-
-function filterUstensils(text, ustensil) {
-    const element = text.toLowerCase();
-    const newUstensils = ustensil.filter((ustensil) => ustensil.toLowerCase().includes(element));
-    return newUstensils;
-}
-
-initDropdownSearchUstensil();

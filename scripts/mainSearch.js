@@ -1,15 +1,16 @@
-let ingredientFiltered;
-let ustensilFiltered;
 function affichageRecettesFiltres() {
     const searchBar = document.querySelector(".search_input");
     searchBar.addEventListener("input", (e) => {
         let filteredRecipes = filterRecipe(e.target.value);
         displayRecipes(filteredRecipes);
-        ingredientFiltered = getIngredient(filteredRecipes);
-        getDropdownDomIngredient(ingredientFiltered);
-        getDropdownDomAppareil(filteredRecipes);
-        ustensilFiltered = getUstensile(filteredRecipes);
-        getDropdownDomUstensile(ustensilFiltered);
+
+        let ingredientFiltered = getIngredient(filteredRecipes);
+        let appareilFiltered = getAppareils(filteredRecipes);
+        let ustensilFiltered = getUstensile(filteredRecipes);
+
+        dropdownIngredient.updateDropdown(ingredientFiltered);
+        dropdownAppareil.updateDropdown(appareilFiltered);
+        dropdownUstensil.updateDropdown(ustensilFiltered);
     });
 }
 
