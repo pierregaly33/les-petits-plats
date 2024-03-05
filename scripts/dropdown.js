@@ -2,7 +2,7 @@ const dropdownDomIngredient = document.querySelector("#dropdown-ingredients");
 const dropdownDomAppareil = document.querySelector("#dropdown-appareil");
 const dropdownDomUstensil = document.querySelector("#dropdown-ustensiles");
 
-function createDropdown(domElement, tableauString) {
+function createDropdown(domElement, tableauString, fonctionAExecuterAuclick) {
     let dejaOuvert;
     const liste = domElement.querySelector("ul");
     const searchBar = domElement.querySelector("input");
@@ -38,33 +38,42 @@ function createDropdown(domElement, tableauString) {
     });
     closeDropdown();
 
-    function createDom(tableau) {
+    function createDomLi(tableau) {
         tableau.forEach((element) => {
             const createLi = document.createElement("li");
+            createLi.setAttribute("class", "liste-dropdown");
+            createLi.addEventListener("click", fonctionAExecuterAuclick);
             liste.appendChild(createLi);
             createLi.textContent = element;
         });
     }
-
-    createDom(tableauString);
+    createDomLi(tableauString);
 
     searchBar.addEventListener("input", (e) => {
         const filteredItems = filter(e.target.value);
         liste.innerHTML = "";
-        createDom(filteredItems);
+        createDomLi(filteredItems);
     });
 
     function updateDropdown(nouvellesValeurs) {
         tableauDeRecherche = nouvellesValeurs;
         liste.innerHTML = "";
-        createDom(nouvellesValeurs);
+        createDomLi(nouvellesValeurs);
     }
+
     return { updateDropdown };
 }
 
-const dropdownIngredient = createDropdown(dropdownDomIngredient, getIngredient(recipes));
-const dropdownAppareil = createDropdown(dropdownDomAppareil, getAppareils(recipes));
-const dropdownUstensil = createDropdown(dropdownDomUstensil, getUstensile(recipes));
+const dropdownIngredient = createDropdown(dropdownDomIngredient, getIngredient(recipes), (e) => {
+    createTag(e.target.textContent, "#dropdown-ingredients");
+});
+
+const dropdownAppareil = createDropdown(dropdownDomAppareil, getAppareils(recipes), (e) => {
+    createTag(e.target.textContent, "#dropdown-appareil");
+});
+const dropdownUstensil = createDropdown(dropdownDomUstensil, getUstensile(recipes), (e) => {
+    createTag(e.target.textContent, "#dropdown-ustensiles");
+});
 
 function getIngredient(tableau) {
     let tableauIntermediaire = tableau.flatMap((recipe) => recipe.ingredients);
