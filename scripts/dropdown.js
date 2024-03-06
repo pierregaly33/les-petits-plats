@@ -4,20 +4,23 @@ const dropdownDomUstensil = document.querySelector("#dropdown-ustensiles");
 
 function createDropdown(domElement, tableauString, fonctionAExecuterAuclick) {
     let dejaOuvert;
+
     const liste = domElement.querySelector("ul");
     const searchBar = domElement.querySelector("input");
 
     let tableauDeRecherche = tableauString;
 
     function openDropdown() {
-        searchBar.style.display = "block";
-        liste.style.display = "block";
+        domElement.classList.add("open");
+        domElement.classList.remove("close");
+
         dejaOuvert = true;
     }
 
     function closeDropdown() {
-        searchBar.style.display = "none";
-        liste.style.display = "none";
+        domElement.classList.remove("open");
+        domElement.classList.add("close");
+
         dejaOuvert = false;
     }
 

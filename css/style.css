@@ -3,6 +3,23 @@
     margin: 0;
 }
 
+.dropdown.open>.container-dropdown {
+    display: block
+}
+
+.dropdown.open>img {
+    transform: rotate(180deg);
+}
+
+.dropdown.close>.container-dropdown {
+    display: none
+}
+
+.dropdown.close>img {
+    transform: rotate(0deg);
+}
+
+
 .header {
     width: 100%;
     display: flex;

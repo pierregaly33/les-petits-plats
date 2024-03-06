@@ -26,7 +26,7 @@ function createTag(chaineDecaractere, dedansQuoiJajouteMesTag) {
     mainTag.appendChild(tag);
     const close = document.createElement("img");
     close.setAttribute("class", "close-tag");
-    close.src = "assets/Vector.svg";
+    close.src = "assets/Close.svg";
     mainTag.appendChild(close);
 
     tag.textContent = chaineDecaractere;
