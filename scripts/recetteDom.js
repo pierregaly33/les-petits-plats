@@ -9,6 +9,11 @@ function getRecipeDom(recipe) {
     photo.setAttribute("alt", recipe.name);
     article.appendChild(photo);
 
+    const p = document.createElement("p");
+    p.textContent = recipe.time + "min";
+    p.setAttribute("class", "time");
+    article.appendChild(p);
+
     const footerRecette = document.createElement("div");
     footerRecette.setAttribute("class", "footer-recette");
     article.appendChild(footerRecette);
