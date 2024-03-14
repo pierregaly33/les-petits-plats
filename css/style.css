@@ -4,12 +4,18 @@
 }
 
 .dropdown.open>.container-dropdown {
-    display: block
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    width: 204px;
+    text-align: center;
 }
 
 .dropdown.open>img {
     transform: rotate(180deg);
 }
+
 
 .dropdown.close>.container-dropdown {
     display: none
@@ -62,13 +68,17 @@ header p {
 }
 
 .search_bar {
-    margin-top: 15px;
     text-align: center;
-    width: 100%;
+    width: 80%;
+    background-color: white;
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    align-items: center;
 }
 
 .search_input {
-    width: 68%;
+    width: 94%;
     height: 72px;
     color: var(--Grey, #7A7A7A);
     font-family: Manrope;
@@ -78,21 +88,29 @@ header p {
     line-height: normal;
     border-radius: 11px;
     border-color: unset;
+    border: none;
+    outline: none;
+}
+
+main {
+    background-color: #EDEDED;
 }
 
 .search_button {
-    position: absolute;
     background-color: black;
-    right: 236px;
-    border-radius: 5px;
+    border-radius: 11px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border: none;
 }
 
 .main_bouton_filtre {
     display: flex;
     gap: 50px;
     justify-content: center;
-    position: absolute;
     width: 100%;
+    z-index: 1;
 }
 
 article img {
@@ -104,30 +122,50 @@ article img {
 
 .dropdown {
     overflow: hidden;
+    background-color: white;
+    border-radius: 11px;
 }
 
-.dropdown ul {
-    background: #FFFFFF;
-    list-style-type: none;
-    padding: 0;
-    overflow-y: auto;
-    max-height: 300px;
-    width: 195px;
-}
-
-button {
+.dropdown>button {
     padding: 17px 16px 17px 16px;
     border-radius: 11px;
     border: none;
     cursor: pointer;
     background: #FFFFFF;
+    width: 185px;
+}
+
+.open {
+    border-radius: 11px 11px 0 0;
+
+}
+
+
+
+.dropdown ul {
+    background: white;
+    list-style-type: none;
+    padding: 0;
+    overflow-y: auto;
+    max-height: 300px;
+    text-align: left;
+    width: 195px;
+}
+
+.dropdown li {
+    margin-left: 13px;
+    margin-top: 5px;
+    text-transform: capitalize;
+}
+
+.dropdown ul::-webkit-scrollbar {
+    width: 0 !important;
 }
 
 .main_cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 66px;
-    background-color: #EDEDED;
     padding-top: 90px;
 }
 
@@ -138,6 +176,20 @@ button {
     width: 64%;
     margin: 0 auto;
     border-radius: 20px;
+    position: relative;
+}
+
+
+.time {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #FFD15B;
+    padding: 5px 5px;
+    border-radius: 14px;
+    font-family: Manrope;
+    font-weight: 400;
+    font-size: 12px;
 }
 
 .footer-recette {
