@@ -7,9 +7,14 @@ function affichageRecettesFiltres() {
         }
         const tagCreer = document.querySelectorAll(".tag");
         tableauVide = [];
-        tagCreer.forEach((element) => {
-            tableauVide.push(element.textContent);
-        });
+        // tagCreer.forEach((element) => {
+        //     tableauVide.push(element.textContent);
+        // });
+        for (let i = 0; i < tagCreer.length; i++) {
+            tag = tagCreer[i].textContent;
+            tableauVide.push(tag);
+        }
+
         tableauVide.push(e.target.value);
         let filteredRecipes = filterRecipe(tableauVide);
 
@@ -26,17 +31,38 @@ function affichageRecettesFiltres() {
 }
 
 function filterRecipe(tableauString) {
-    let recettes = recipes;
-    for (let e of tableauString) {
-        const element = e.toLowerCase();
-        recettes = recettes.filter(
-            (recipe) =>
-                recipe.name.toLowerCase().includes(element) ||
-                recipe.description.toLowerCase().includes(element) ||
-                recipe.ustensils.includes(element)
-        );
+    if (tableauString.length === 0) {
+        return recipes;
     }
-    return recettes;
+
+    let tableau = [];
+    for (let i = 0; i < recipes.length; i++) {
+        let recipe = recipes[i];
+        let elementVerifie = true;
+        for (let j = 0; j < tableauString.length; j++) {
+            let texte = tableauString[j].toLowerCase();
+            let descriptionOK = recipe.description.toLowerCase().includes(texte);
+            let nameOK = recipe.name.toLowerCase().includes(texte);
+            let ustensileOK = recipe.ustensils.includes(texte);
+
+            let nomIngredients = [];
+            for (let el = 0; el < recipe.ingredients.length; el++) {
+                let ingredient = recipe.ingredients[el].ingredient;
+                nomIngredients.push(ingredient.toLowerCase());
+            }
+            let ingredientOK = nomIngredients.includes(texte);
+
+            if (!descriptionOK && !nameOK && !ustensileOK && !ingredientOK) {
+                elementVerifie = false;
+            }
+        }
+
+        if (elementVerifie === true) {
+            tableau.push(recipe);
+        }
+    }
+
+    return tableau;
 }
 
 affichageRecettesFiltres();
