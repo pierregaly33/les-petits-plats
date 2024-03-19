@@ -7,9 +7,7 @@ function affichageRecettesFiltres() {
         }
         const tagCreer = document.querySelectorAll(".tag");
         tableauVide = [];
-        // tagCreer.forEach((element) => {
-        //     tableauVide.push(element.textContent);
-        // });
+
         for (let i = 0; i < tagCreer.length; i++) {
             tag = tagCreer[i].textContent;
             tableauVide.push(tag);
@@ -43,7 +41,13 @@ function filterRecipe(tableauString) {
             let texte = tableauString[j].toLowerCase();
             let descriptionOK = recipe.description.toLowerCase().includes(texte);
             let nameOK = recipe.name.toLowerCase().includes(texte);
-            let ustensileOK = recipe.ustensils.includes(texte);
+
+            let nomUstensile = [];
+            for (let k = 0; k < recipe.ustensils.length; k++) {
+                let ustensile = recipe.ustensils[k];
+                nomUstensile.push(ustensile.toLowerCase());
+            }
+            let ustensileOK = nomUstensile.includes(texte);
 
             let nomIngredients = [];
             for (let el = 0; el < recipe.ingredients.length; el++) {
