@@ -176,8 +176,11 @@ article img {
 
 .liste-dropdown {
     padding: 10px 0 10px 13px;
-    text-transform: capitalize;
     cursor: pointer;
+}
+
+.liste-dropdown::first-letter {
+    text-transform: capitalize;
 }
 
 .liste-dropdown:hover {
@@ -185,7 +188,7 @@ article img {
 }
 
 .dropdown ul::-webkit-scrollbar {
-    width: 0 !important;
+    width: 0;
 }
 
 .main_cards {
