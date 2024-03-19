@@ -45,7 +45,10 @@ function createDropdown(domElement, tableauString, fonctionAExecuterAuclick) {
         tableau.forEach((element) => {
             const createLi = document.createElement("li");
             createLi.setAttribute("class", "liste-dropdown");
-            createLi.addEventListener("click", fonctionAExecuterAuclick);
+            createLi.addEventListener("click", (e) => {
+                fonctionAExecuterAuclick(e);
+                closeDropdown();
+            });
             liste.appendChild(createLi);
             createLi.textContent = element;
         });
@@ -68,14 +71,14 @@ function createDropdown(domElement, tableauString, fonctionAExecuterAuclick) {
 }
 
 const dropdownIngredient = createDropdown(dropdownDomIngredient, getIngredient(recipes), (e) => {
-    createTag(e.target.textContent, "#dropdown-ingredients");
+    createTag(e.target.textContent, "#ingredients");
 });
 
 const dropdownAppareil = createDropdown(dropdownDomAppareil, getAppareils(recipes), (e) => {
-    createTag(e.target.textContent, "#dropdown-appareil");
+    createTag(e.target.textContent, "#appareils");
 });
 const dropdownUstensil = createDropdown(dropdownDomUstensil, getUstensile(recipes), (e) => {
-    createTag(e.target.textContent, "#dropdown-ustensiles");
+    createTag(e.target.textContent, "#ustensiles");
 });
 
 function getIngredient(tableau) {
