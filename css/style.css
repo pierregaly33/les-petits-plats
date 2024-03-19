@@ -150,6 +150,10 @@ article img {
     font-family: Manrope;
 }
 
+.tag {
+    text-transform: lowercase;
+}
+
 .tag::first-letter {
     text-transform: capitalize;
 }
@@ -180,6 +184,7 @@ article img {
 .liste-dropdown {
     padding: 10px 0 10px 13px;
     cursor: pointer;
+    text-transform: lowercase;
 }
 
 .liste-dropdown::first-letter {
