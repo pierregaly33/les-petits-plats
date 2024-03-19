@@ -148,6 +148,9 @@ article img {
     margin-top: 20px;
     align-items: center;
     font-family: Manrope;
+}
+
+.tag::first-letter {
     text-transform: capitalize;
 }
 
