@@ -32,6 +32,7 @@ function getRecipeDom(recipe) {
     mainRecette.appendChild(titleMainRecette);
 
     const descriptionRecette = document.createElement("p");
+    descriptionRecette.setAttribute("class", "recette-description");
     descriptionRecette.textContent = recipe.description;
     mainRecette.appendChild(descriptionRecette);
 
