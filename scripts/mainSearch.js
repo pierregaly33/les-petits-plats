@@ -33,7 +33,8 @@ function filterRecipe(tableauString) {
             (recipe) =>
                 recipe.name.toLowerCase().includes(element) ||
                 recipe.description.toLowerCase().includes(element) ||
-                recipe.ustensils.includes(element)
+                recipe.ustensils.map((ustensil) => ustensil.toLowerCase()).includes(element) ||
+                recipe.ingredients.map((ingredients) => ingredients.ingredient.toLowerCase()).includes(element)
         );
     }
     return recettes;
