@@ -94,6 +94,7 @@ header p {
 
 main {
     background-color: #EDEDED;
+    min-height: 500px;
 }
 
 .search_button {
@@ -206,6 +207,16 @@ article img {
     padding-top: 90px;
 }
 
+.introuvable {
+    grid-template-columns: none;
+}
+
+.recette-introuvable {
+    display: flex;
+    justify-content: center;
+    font-family: Manrope;
+    font-size: 40px;
+}
 
 .card_recipe {
     background: white;
