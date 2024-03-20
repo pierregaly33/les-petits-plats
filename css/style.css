@@ -106,12 +106,25 @@ main {
     border: none;
 }
 
+.bouton-nombre-recettes {
+    display: flex;
+    justify-content: space-around;
+}
+
 .main_bouton_filtre {
     display: flex;
     gap: 50px;
-    justify-content: center;
-    width: 100%;
+    width: 69%;
+    justify-content: flex-start;
     z-index: 1;
+}
+
+.nombre-recettes {
+    display: flex;
+    align-items: center;
+    font-family: Anton;
+    font-size: 21px;
+    font-weight: 400;
 }
 
 article img {
