@@ -14,6 +14,9 @@ function displayRecipes(recettes) {
         mainCards.appendChild(domRecipe);
         mainCards.classList.remove("introuvable");
     });
+
+    const nombreRecettes = document.querySelector(".nombre-recettes");
+    nombreRecettes.textContent = recettes.length + " " + "recettes";
 }
 
 function init() {
