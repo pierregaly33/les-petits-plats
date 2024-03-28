@@ -65,7 +65,7 @@
 }
 
 header p {
-    color: var(--Yellow, #FFD15B);
+    color: #FFD15B;
     text-align: center;
     font-family: Anton;
     font-size: 44px;
@@ -96,13 +96,13 @@ header p {
 .search_input {
     width: 94%;
     height: 72px;
-    color: var(--Grey, #7A7A7A);
+    color: #7A7A7A;
     font-family: Manrope;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    border-radius: 11px;
+    border-radius: 20px;
     border-color: unset;
     border: none;
     outline: none;
